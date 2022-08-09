@@ -12,15 +12,22 @@ import java.util.List;
 
 @Service
 public class CoinCapService {
+    private final String apiURLbase = "https://api.coincap.io/v2/assets";
     public String getBitcoinPrice(){
-        String apiURL = "https://api.coincap.io/v2/assets/bitcoin";
+        String path = apiURLbase + "/bitcoin";
         RestTemplate restTemplate = new RestTemplate();
-        Bitcoin res = restTemplate.getForObject(apiURL, Bitcoin.class);
+        Crypto res = restTemplate.getForObject(path, Crypto.class);
         return res.data.priceUsd;
     }
-}
+    public String getCurrencyPrice(String currency){
+        String path = apiURLbase + "/" + currency;
+        RestTemplate restTemplate = new RestTemplate();
+        Crypto res = restTemplate.getForObject(path, Crypto.class);
+        return res.data.priceUsd;
+    }
 
-class Bitcoin{
+}
+class Crypto{
     public String timestamp;
     public Data data;
 }

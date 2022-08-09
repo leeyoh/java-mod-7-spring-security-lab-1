@@ -18,4 +18,12 @@ class CoinCapServiceIntegrationTest {
 //        assertThat(bitcoinPrice2).isNotNull();
 //        assertThat(bitcoinPrice).isNotEqualTo(bitcoinPrice2);
     }
+
+    @Test
+    void shouldReturnEtherPrices(){
+        String currency = "ethereum";
+        CoinCapService coinCapService = new CoinCapService();
+        String cryptoPrice = coinCapService.getCurrencyPrice(currency);
+        assertThat(cryptoPrice).isNotNull();
+    }
 }
